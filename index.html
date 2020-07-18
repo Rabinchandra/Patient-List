@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient List</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./fontawesome-free-5.13.0-web/css/all.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- navbar -->
+    <div class="nav-bar">
+      <div class="toggle-bar">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div id="table-tools">
+        <div class="search-input">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            placeholder="Search a patient..."
+            spellcheck="false"
+          />
+        </div>
+        <div class="ml-4 dropdown show">
+          <a class="btn btn-primary dropdown-toggle notification-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Notification <span class="badge badge-light"></span>
+          </a>
+        
+          <div class="dropdown-menu notification-list" aria-labelledby="dropdownMenuLink">
+          </div>
+        </div>
+
+        </button>
+        <i class="fas fa-save save" title="Save Data" data-toggle="tooltips"></i>
+        <i
+          class="fas fa-user-plus add-user float-right"
+          data-target="#add-patient-modal"
+          data-toggle="modal"
+        ></i>
+      </div>
+    </div>
+    <!-- overlay -->
+    <div class="overlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="search-table-wrapper">
+        <i class="fas fa-search"></i>
+        <input
+          type="search"
+          placeholder="Search patient table..."
+          class="search-table-input"
+        />
+      </div>
+      <ul class="tables"></ul>
+      <div class="sidebar-btns">
+        <i class="fas fa-trash delete-table" data-target="#delete-table-modal" data-toggle="modal"></i>
+        <i
+          class="fas fa-plus-circle add-table"
+          data-target="#add-table-modal"
+          data-toggle="modal"
+        ></i>
+      </div>
+      <hr />
+      <ul class="config">
+        <li class="config-search-patients" data-target="#search-patient-modal" data-toggle="modal">
+          <i class="fas fa-search"></i> Search Patients
+        </li>
+        <li class="config-medicines"><i class="fas fa-notes-medical"></i> Medicines</li>
+        <li class="developer"><i class="fas fa-user-circle"></i> Developer</li>
+        <li class="settings"><i class="fas fa-wrench"></i> Settings</li>
+      </ul>
+    </div>
+    <div class="table-content p-4"></div>
+    <!-- patient details -->
+    <div class="patient-details-container">
+      <i class="fas fa-chevron-left patient-details-back"></i>
+      <i class="fas fa-user-minus delete-patient float-right"></i>
+      <i class="fas fa-print print float-right"></i>
+      <div class="patient-details"></div>
+    </div>
+    <!-- Add table modal box -->
+    <div
+      class="modal fade"
+      id="add-table-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addTableModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Table</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" id="add-table-name" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="modal-add-table-btn"
+            >
+              Add Table
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Patient Modal Box -->
+    <div
+      class="modal fade"
+      id="add-patient-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addPatientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Patient</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="is-new-patient">Is this a new Patient : </label>
+            <select id="is-new-patient" class="form-control">
+              <option value="">Select an option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+            <div class="modal-add-patient-msg"></div>
+            <div class="patient-id-input-container"></div>
+            <div class="add-patient-inputs"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="modal-add-patient-btn"
+            >
+              Add Patient
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- all search patients -->
+    <div
+      class="modal fade"
+      id="search-patient-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="searchPatientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Search Patient</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control search-from-all-patient-input" placeholder="Type the name of the patient" />
+            <ul class="searched-patient-container list-group">
+
+            </ul>
+          <div class="modal-footer">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Delete patient -->
+    <!-- <div
+      class="modal fade"
+      id="delete-table-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="deleteTableModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Table</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="delete-table-msg"></div>
+            <label for="delete-table-name">Enter the name of the table :</label>
+            <input type="text" class="form-control" id="delete-table-name">
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="modal-delete-table-btn"
+            >
+              Delete Table
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+   
+    
+    <script src="functions.js"></script>
+    <script src="table.js"></script>
+    <script src="events.js"></script>
+
+    <script src="sidebar.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // init toolstips
+      $('[data-toggle="tooltips"]').tooltip();
+    </script>
+  </body>
+</html>
+
+

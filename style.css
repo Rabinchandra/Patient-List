@@ -1,0 +1,414 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;300;400;500&family=Roboto:wght@100;300;400&display=swap");
+
+* {
+	/* border: 1px solid red; */
+	outline: none !important;
+	font-family: "catamaran", sans-serif, arial;
+	font-size: 17px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url("./img/background.png");
+	background-size: 30%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	/* height: 100vh; */
+}
+
+/* Scroll bar style */
+::-webkit-scrollbar {
+	display: none;
+}
+
+/* overlay */
+.overlay {
+	transition-duration: 1s;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.overlay-on {
+	background: rgba(129, 129, 129, 0.61);
+	z-index: 4;
+}
+
+/* Navbar */
+.nav-bar {
+	/* background: rgba(49, 15, 199, 0.959); */
+	/* background: #74b816; */
+	background: #505050;
+	/* background: #343a40; */
+	/* background: #0b7285; */
+	/* background: #12b886; */
+	padding: 12px;
+	display: flex;
+	align-items: center;
+	height: 65px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+}
+
+.toggle-bar > div {
+	background: #fff;
+	width: 50px;
+	height: 6px;
+	margin-bottom: 6px;
+}
+
+.toggle-bar {
+	width: 50px;
+	margin-right: 50px;
+	cursor: pointer;
+}
+
+/* table tools */
+#table-tools {
+	width: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	display: none;
+	transition-property: opacity;
+	transition-duration: 0.4s;
+}
+
+/* patient search input */
+.search-input {
+	background: rgba(255, 255, 255, 0.178);
+	padding: 0.5em 0px;
+	text-align: center;
+	width: 260px;
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+}
+
+.search-input input {
+	border: none;
+	background: transparent;
+	color: #fff;
+}
+
+.search-input input::placeholder {
+	color: #fff;
+}
+
+.search-input button {
+	background: transparent;
+	border: none;
+	padding-right: 12px;
+}
+
+.search-input i {
+	color: #fff;
+	cursor: pointer;
+	padding: 0 10px;
+}
+/* filter, add-user icon */
+.save,
+.add-user {
+	color: #fff;
+	font-size: 1.6em;
+	cursor: pointer;
+	padding-left: 1em;
+}
+
+.save:hover,
+.add-user:hover {
+	color: rgb(8, 179, 79);
+}
+
+.add-user {
+	position: absolute;
+	right: 20px;
+}
+
+/* table content */
+.table-content {
+	margin-top: 50px;
+	height: 90vh;
+	overflow: scroll;
+}
+
+/* Sidebar */
+.sidebar {
+	background: #fff;
+	font-weight: 200;
+	box-shadow: 0px 0px 20px 12px rgba(36, 36, 36, 0.2);
+	position: absolute;
+	width: 500px;
+	height: 100%;
+	overflow: scroll;
+	top: 0;
+	left: -600px;
+	padding: 0;
+	transition-property: left;
+	transition-duration: 0.3s;
+	z-index: 5;
+}
+/* sidebar patient table search input */
+.search-table-wrapper {
+	margin: 2em auto;
+	display: flex;
+	justify-content: center;
+}
+
+/* Search input */
+.search-table-input {
+	border: none;
+	font-size: 1.2em;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-left: 0px;
+	padding: 12px;
+	transition-property: border;
+	transition-duration: 0.5s;
+	width: 250px;
+}
+
+.search-table-input:hover {
+	border-color: #333;
+}
+
+/* sidebar search icon */
+.search-table-wrapper i {
+	width: 50px;
+	font-size: 1.2em;
+	background: #4caf50;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* sidebar ul */
+.sidebar ul {
+	list-style-type: none;
+	padding: 0;
+	height: 45%;
+	overflow-x: scroll;
+}
+
+/* sidebar li */
+.sidebar ul li {
+	text-align: center;
+	font-size: 1.5em;
+	cursor: pointer;
+	transition-property: font-size;
+	transition-duration: 0.3s;
+	height: 55px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.sidebar ul li:hover {
+	font-size: 2em;
+}
+
+/* sidebar btns */
+.sidebar-btns {
+	display: flex;
+	justify-content: space-between;
+}
+
+.sidebar-btns i {
+	font-size: 2em;
+	padding: 0px 1.3em;
+	cursor: pointer;
+}
+
+.add-table:hover {
+	color: rgb(29, 143, 1);
+}
+
+.delete-table:hover {
+	color: rgb(255, 0, 64);
+}
+
+/* config */
+.config {
+	text-align: center;
+	height: 300px !important;
+	color: rgb(0, 89, 255);
+}
+
+.config > div {
+	font-size: 1.5em;
+}
+
+/* config icons */
+.config i {
+	font-size: 1em;
+	padding-right: 10px;
+}
+
+/* .patient-list-container */
+
+.patient-list-container td,
+.patient-list-container th {
+	font-size: 1.3em;
+}
+
+/* is new patient */
+#is-new-patient {
+	width: 200px;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+/* patient details container */
+.patient-details-container {
+	padding: 5em 2em;
+	position: fixed;
+	top: 0px;
+	right: -120%;
+	height: 100%;
+	width: 100%;
+	background: #fff;
+	transition-property: right;
+	transition-duration: 0.6s;
+	box-shadow: 0px 0px 20px 5px rgba(104, 104, 104, 0.575);
+	z-index: 1;
+	overflow: scroll;
+}
+
+/* i in patient details */
+.patient-details-back {
+	cursor: pointer;
+	font-size: 1.5em;
+	color: #333;
+}
+
+.delete-patient,
+.print,
+.user-edit {
+	cursor: pointer;
+	font-size: 1.4em;
+	padding: 0px 1em;
+}
+
+.delete-patient:hover {
+	color: red;
+}
+
+/* patient details */
+.patient-basic-details {
+	display: flex;
+	border: 1px solid #ccc;
+	padding: 1em;
+}
+
+.patient-basic-details div {
+	flex-basis: 50%;
+}
+
+.patient-basic-details table td {
+	font-size: 1.1em;
+	padding: 0px 1em;
+}
+
+.patient-basic-details td:first-child {
+	font-weight: bold;
+}
+
+/* More patient info */
+.more-patient-info {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 4em;
+	margin-top: 2em;
+	padding: 2em;
+	border: 1px solid #ccc;
+}
+
+.more-patient-info > div > div {
+	margin-bottom: 8px;
+	font-size: 1.3em;
+	border-bottom: 1px solid #ccc;
+}
+
+.more-patient-info > div span {
+	font-size: 1em !important;
+	margin-right: 12px;
+	font-weight: bold;
+}
+
+/* Add patient inputs */
+.add-patient-inputs label {
+	margin-top: 1.3em;
+}
+
+.add-medication {
+	padding: 0px 10px !important;
+	font-size: 1em !important;
+	font-weight: bold !important;
+	margin-left: 5px;
+}
+
+/* medicines names div container */
+.medicine-names {
+	text-align: center;
+}
+
+/* medicine names div */
+.medicine-names div {
+	margin: 5px;
+	padding: 4px 12px;
+	border: 1px solid #343a40;
+	border-radius: 20px;
+	float: left;
+	cursor: pointer;
+	text-align: center;
+}
+
+.medicine-names div:hover,
+.medicine-selected {
+	background: #343a40;
+	color: #fff;
+}
+
+/* Dropdown */
+.dropdown-item {
+	cursor: pointer;
+}
+
+/* background: rgba(49, 15, 199, 0.959); */
+/* background: #74b816; */
+/* background: #343a40; */
+
+/* contact */
+.contact-container {
+	padding: 12px;
+	text-align: center;
+	width: 100%;
+}
+
+.contact-container p,
+strong {
+	font-size: 30px !important;
+}
+
+/* Developer */
+.developer-container {
+	margin-top: 100px;
+}
+
+.developer-container,
+.developer-container p {
+	text-align: center;
+	font-size: 25px;
+}
+
+.developer-container img {
+	height: 200px;
+	margin-bottom: 1.5em;
+	border-radius: 50%;
+}
